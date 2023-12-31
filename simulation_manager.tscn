@@ -1,0 +1,60 @@
+[gd_scene load_steps=3 format=3 uid="uid://crrtwsrwf5uyp"]
+
+[ext_resource type="Script" path="res://simulation_manager.gd" id="1_uqfa8"]
+[ext_resource type="PackedScene" uid="uid://doj52gd204ioo" path="res://blobble.tscn" id="2_13ydc"]
+
+[node name="Simulation Manager" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_uqfa8")
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(1152, 648)
+position_smoothing_speed = 1.0
+
+[node name="Blobble" parent="." instance=ExtResource("2_13ydc")]
+position = Vector2(566, 325)
+
+[node name="Blobble2" parent="." instance=ExtResource("2_13ydc")]
+position = Vector2(597, 922)
+
+[node name="Blobble3" parent="." instance=ExtResource("2_13ydc")]
+position = Vector2(1789, 1075)
+
+[node name="Blobble4" parent="." instance=ExtResource("2_13ydc")]
+position = Vector2(1980, 270)
+
+[node name="Blobble5" parent="." instance=ExtResource("2_13ydc")]
+position = Vector2(597, 2113)
+
+[node name="Blobble6" parent="." instance=ExtResource("2_13ydc")]
+position = Vector2(3761, 282)
+
+[node name="Blobble7" parent="." instance=ExtResource("2_13ydc")]
+position = Vector2(3824, 1001)
+
+[node name="UI Layer" type="CanvasLayer" parent="."]
+process_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI Layer"]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 209.0
+offset_bottom = 115.0
+alignment = 1
+
+[node name="Pause Button" type="Button" parent="UI Layer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Pause"
+
+[node name="Button2" type="Button" parent="UI Layer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "+"
+
+[node name="Button3" type="Button" parent="UI Layer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "-"
+
+[connection signal="button_up" from="UI Layer/HBoxContainer/Pause Button" to="." method="pause" binds= [true]]
