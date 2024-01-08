@@ -1,5 +1,5 @@
-extends Node2D
-class_name Food
+extends Node
+class_name BlobbleState
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

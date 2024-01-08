@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://crrtwsrwf5uyp"]
+[gd_scene load_steps=4 format=3 uid="uid://crrtwsrwf5uyp"]
 
 [ext_resource type="Script" path="res://simulation_manager.gd" id="1_uqfa8"]
 [ext_resource type="PackedScene" uid="uid://doj52gd204ioo" path="res://blobble.tscn" id="2_13ydc"]
+[ext_resource type="PackedScene" uid="uid://tt6xkpxs4gji" path="res://food.tscn" id="3_2hd1n"]
 
 [node name="Simulation Manager" type="Node2D"]
 process_mode = 3
@@ -32,29 +33,36 @@ position = Vector2(3761, 282)
 [node name="Blobble7" parent="." instance=ExtResource("2_13ydc")]
 position = Vector2(3824, 1001)
 
-[node name="UI Layer" type="CanvasLayer" parent="."]
+[node name="UILayer" type="CanvasLayer" parent="."]
 process_mode = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI Layer"]
+[node name="TopLeftUI" type="HBoxContainer" parent="UILayer"]
 offset_left = 20.0
 offset_top = 20.0
 offset_right = 209.0
 offset_bottom = 115.0
 alignment = 1
 
-[node name="Pause Button" type="Button" parent="UI Layer/HBoxContainer"]
+[node name="PauseButton" type="Button" parent="UILayer/TopLeftUI"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Pause"
 
-[node name="Button2" type="Button" parent="UI Layer/HBoxContainer"]
+[node name="ZoomInButton" type="Button" parent="UILayer/TopLeftUI"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "+"
 
-[node name="Button3" type="Button" parent="UI Layer/HBoxContainer"]
+[node name="ZoomOutButton" type="Button" parent="UILayer/TopLeftUI"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "-"
 
-[connection signal="button_up" from="UI Layer/HBoxContainer/Pause Button" to="." method="pause" binds= [true]]
+[node name="Food" parent="." instance=ExtResource("3_2hd1n")]
+position = Vector2(1125, 746)
+
+[connection signal="button_up" from="UILayer/TopLeftUI/PauseButton" to="." method="pause" binds= [true]]
+[connection signal="button_down" from="UILayer/TopLeftUI/ZoomInButton" to="." method="zoom_from_btn" binds= [true]]
+[connection signal="button_up" from="UILayer/TopLeftUI/ZoomInButton" to="." method="stop_zoom_btn"]
+[connection signal="button_down" from="UILayer/TopLeftUI/ZoomOutButton" to="." method="zoom_from_btn" binds= [false]]
+[connection signal="button_up" from="UILayer/TopLeftUI/ZoomOutButton" to="." method="stop_zoom_btn"]
