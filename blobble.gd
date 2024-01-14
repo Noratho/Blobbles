@@ -3,7 +3,9 @@ class_name Blobble
 
 @export_group("Blobble Stats")
 @export var health: int = 1
-@export var speed: float = 20.0
+@export var speed: float = 4.0
+
+@onready var main_scene_node = get_tree().current_scene
 
 var velocity : Vector2
 var target: Node2D
@@ -12,16 +14,16 @@ var target: Node2D
 
 
 func _ready():
-	pass # Replace with function body.
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	move()
 
 func replicate():
 	pass
 
 
 func move():
-	pass
+	position += velocity * speed
